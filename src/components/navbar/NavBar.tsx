@@ -1,44 +1,26 @@
-import React, { useContext } from "react";
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
+import React from "react";
+
+//Components
+import { ButtonTheme } from "../theme/ButtonTheme";
+
+//
+import { MenuItem, Container, Menu, Typography, IconButton, Toolbar, AppBar, Box } from '@mui/material';
+
+//Icons
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { ThemeContext } from '../../context/ThemeContext';
-import { useTheme } from "@mui/material";
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+export const NavBar = () => {
 
-export const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleCloseNavMenu = (anchor = null) => {
+    setAnchorElNav(anchor);
   };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  const themeMode = useContext(ThemeContext)
-  const theme = useTheme()
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -65,58 +47,47 @@ export const ResponsiveAppBar = () => {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={() => handleCloseNavMenu()}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem key="Inicio_Menu" onClick={() => handleCloseNavMenu()}>
+                <Typography textAlign="center">Inicio</Typography>
+              </MenuItem>
+              <MenuItem key="SobreMim_Menu" onClick={() => handleCloseNavMenu()}>
+                <Typography textAlign="center">Sobre mim</Typography>
+              </MenuItem>
+              <MenuItem key="Experiências_Menu" onClick={() => handleCloseNavMenu()}>
+                <Typography textAlign="center">Experiências</Typography>
+              </MenuItem>
+              <MenuItem key="Projetos_Menu" onClick={() => handleCloseNavMenu()}>
+                <Typography textAlign="center">Projetos</Typography>
+              </MenuItem>
+              <MenuItem key="Contato_Menu" onClick={() => handleCloseNavMenu()}>
+                <Typography textAlign="center">Contato</Typography>
+              </MenuItem>
             </Menu>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+          <Box sx={{ flexGrow: 1, justifyContent: "space-around", display: { xs: 'none', md: 'flex' } }}>
+            <MenuItem key="Inicio" onClick={() => handleCloseNavMenu()}>
+              <Typography textAlign="center">Inicio</Typography>
+            </MenuItem>
+            <MenuItem key="SobreMim" onClick={() => handleCloseNavMenu()}>
+              <Typography textAlign="center">Sobre mim</Typography>
+            </MenuItem>
+            <MenuItem key="Experiências" onClick={() => handleCloseNavMenu()}>
+              <Typography textAlign="center">Experiências</Typography>
+            </MenuItem>
+            <MenuItem key="Projetos" onClick={() => handleCloseNavMenu()}>
+              <Typography textAlign="center">Projetos</Typography>
+            </MenuItem>
+            <MenuItem key="Contato" onClick={() => handleCloseNavMenu()}>
+              <Typography textAlign="center">Contato</Typography>
+            </MenuItem>
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={themeMode.toggleColorMode} color="inherit">
-                {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            <ButtonTheme />
           </Box>
         </Toolbar>
       </Container>

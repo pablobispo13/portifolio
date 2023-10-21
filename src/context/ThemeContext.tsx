@@ -27,12 +27,34 @@ export const ThemeContextProvider: React.FC<ThemeContextProviderInterface> = ({ 
 
     const toggleColorMode = () => setMode((prevMode) => prevMode === 'light' ? 'dark' : 'light')
 
+    const scrollbarColor = mode === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)';
+
     const theme = createTheme({
         palette: {
             mode,
         },
+        components: {
+            MuiCssBaseline: {
+                styleOverrides: {
+                    body: {
+                        scrollbarWidth: 'thin',
+                        scrollbarColor: `${scrollbarColor} transparent`,
+                        '&::-webkit-scrollbar': {
+                            width: '12px',
+                        },
+                        '&::-webkit-scrollbar-track': {
+                            background: 'transparent',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                            backgroundColor: scrollbarColor,
+                            borderRadius: '12px',
+                        },
+                    },
+                },
+            },
+        },
     })
-    
+
     return <ThemeContext.Provider value={{ toggleColorMode }}>
         <ThemeProvider theme={theme}>
             {children}

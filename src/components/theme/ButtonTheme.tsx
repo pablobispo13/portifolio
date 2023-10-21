@@ -1,36 +1,18 @@
-import * as React from 'react';
+import { useContext } from "react";
 import IconButton from '@mui/material/IconButton';
-import { createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-export const ToggleColorMode = () =>  {
-const [mode, setMode] = React.useState<'light' | 'dark'>('dark');
-const colorMode = React.useMemo(
-  () => ({
-    toggleColorMode: () => {
-      setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-    },
-  }),
-  [],
-);
+//Context
+import { ThemeContext } from '../../context/ThemeContext';
 
-const theme = React.useMemo(
-  () =>
-    createTheme({
-      palette: {
-        mode,
-        primary: {
-          main: '#1976d2',
-        },
-      },
-    
-    }),
-  [mode],
-);
+//Service
+import { useTheme } from "@mui/material";
 
-return <IconButton onClick={colorMode.toggleColorMode} color="inherit">
+export const ButtonTheme = () => {
+  const themeMode = useContext(ThemeContext)
+  const theme = useTheme()
+  return <IconButton onClick={themeMode.toggleColorMode} color="inherit">
     {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
   </IconButton>
-
 }
