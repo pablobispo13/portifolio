@@ -12,6 +12,7 @@ type ThemeType = 'light' | 'dark'
 interface ThemeContextProviderInterface {
     children: ReactElement<any, any> | null
 }
+
 export const ThemeContextProvider: React.FC<ThemeContextProviderInterface> = ({ children }) => {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
     const getTheme = () => {
@@ -27,7 +28,7 @@ export const ThemeContextProvider: React.FC<ThemeContextProviderInterface> = ({ 
 
     const toggleColorMode = () => setMode((prevMode) => prevMode === 'light' ? 'dark' : 'light')
 
-    const scrollbarColor = mode === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)';
+    const scrollbarColor = mode === 'dark' ? "#536480" : "#a1bcc3";
 
     const theme = createTheme({
         palette: {
@@ -49,6 +50,9 @@ export const ThemeContextProvider: React.FC<ThemeContextProviderInterface> = ({ 
                             backgroundColor: scrollbarColor,
                             borderRadius: '12px',
                         },
+                        '.MuiAppBar-root': {
+                            backgroundColor: mode === 'dark' ? "#050c1c" : "#265b7b"
+                        }
                     },
                 },
             },

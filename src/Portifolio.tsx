@@ -1,12 +1,19 @@
 import { Outlet, Routes, Route } from 'react-router-dom';
-import { Page } from './components/page/Page';
+import { Header } from './components/header/Header';
+import { NavBar } from './components/navbar/NavBar';
+import { About } from './components/about/About';
 
 const Portifolio = () => <Routes>
   <Route path='' element={<Layout />}></Route>
 </Routes>
 
 const Layout = () => <>
-  <Page />
+  {/* Navbar */}
+  <NavBar />
+  {/* Header */}
+  <Header />
+  <About/>
   <Outlet />
 </>
+
 export default Portifolio
