@@ -13,7 +13,7 @@ import { useTheme } from "@mui/material";
 export const Header = () => {
 
   useEffect(() => {
-    cacheImages(["/src/assets/images/header-background.jpg", "/src/assets/images/header-background-light.jpg"]);
+    cacheImages(["../../src/assets/images/header-background.jpg", "../../src/assets/images/header-background-light.jpg"]);
     setSlideContent(true)
   })
 
@@ -40,8 +40,8 @@ export const Header = () => {
   return <Stack
     sx={{
       background: theme.palette.mode === 'dark'
-        ? "#5a1b2f url(/src/assets/images/header-background.jpg) no-repeat top center"
-        : "#96bac5 url(/src/assets/images/header-background-light.jpg) no-repeat top center"
+        ? "#5a1b2f url(../../src/assets/images/header-background.jpg) no-repeat top center"
+        : "#96bac5 url(../../src/assets/images/header-background-light.jpg) no-repeat top center"
     }}
     id="home"
   >
