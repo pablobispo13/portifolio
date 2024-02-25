@@ -2,66 +2,79 @@ import { ThemeProvider, createTheme, useMediaQuery } from "@mui/material";
 import React, { createContext, ReactElement, useEffect, useState } from "react";
 
 interface ThemeContextInterface {
-    toggleColorMode: () => void
+  toggleColorMode: () => void;
 }
 
-export const ThemeContext = createContext<ThemeContextInterface>({ toggleColorMode: () => { } })
+export const ThemeContext = createContext<ThemeContextInterface>({
+  toggleColorMode: () => {},
+});
 
-type ThemeType = 'light' | 'dark'
+type ThemeType = "light" | "dark";
 
 interface ThemeContextProviderInterface {
-    children: ReactElement<any, any> | null
+  children: ReactElement<any, any> | null;
 }
 
-export const ThemeContextProvider: React.FC<ThemeContextProviderInterface> = ({ children }) => {
-    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-    const getTheme = () => {
-        const theme = localStorage.getItem('theme')
-        return theme === 'light' || theme === 'dark' ? theme : (prefersDarkMode ? 'dark' : 'light')
-    }
+export const ThemeContextProvider: React.FC<ThemeContextProviderInterface> = ({
+  children,
+}) => {
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const getTheme = () => {
+    const theme = localStorage.getItem("theme");
+    return theme === "light" || theme === "dark"
+      ? theme
+      : prefersDarkMode
+      ? "dark"
+      : "light";
+  };
 
-    const [mode, setMode] = useState<ThemeType>(getTheme())
+  const [mode, setMode] = useState<ThemeType>(getTheme());
 
-    useEffect(() => {
-        localStorage.setItem('theme', mode)
-    }, [mode])
+  useEffect(() => {
+    localStorage.setItem("theme", mode);
+  }, [mode]);
 
-    const toggleColorMode = () => setMode((prevMode) => prevMode === 'light' ? 'dark' : 'light')
+  const toggleColorMode = () =>
+    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
 
-    const scrollbarColor = mode === 'dark' ? "#536480" : "#a1bcc3";
+  const scrollbarColor = mode === "dark" ? "#536480" : "#a1bcc3";
 
-    const theme = createTheme({
-        palette: {
-            mode,
-        },
-        components: {
-            MuiCssBaseline: {
-                styleOverrides: {
-                    body: {
-                        scrollbarWidth: 'thin',
-                        scrollbarColor: `${scrollbarColor} transparent`,
-                        '&::-webkit-scrollbar': {
-                            width: '12px',
-                        },
-                        '&::-webkit-scrollbar-track': {
-                            background: 'transparent',
-                        },
-                        '&::-webkit-scrollbar-thumb': {
-                            backgroundColor: scrollbarColor,
-                            borderRadius: '12px',
-                        },
-                        '.MuiAppBar-root': {
-                            backgroundColor: mode === 'dark' ? "#050c1c" : "#265b7b"
-                        }
-                    },
-                },
+  const theme = createTheme({
+    palette: {
+      mode,
+    },
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          body: {
+            ".MuiTypography-root": {
+              fontFamily: "'Rubik', sans-serif !important",
             },
+            "#contact": {
+              backgroundColor: mode === "dark" ? "#181d2b" : "#6ea4c5",
+            },
+            ".MuiAppBar-root": {
+              backgroundColor: mode === "dark" ? "#050c1c" : "#265b7b",
+            },
+            "&::-webkit-scrollbar": {
+              width: "12px",
+            },
+            "&::-webkit-scrollbar-track": {
+              background: "transparent",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: scrollbarColor,
+              borderRadius: "12px",
+            },
+          },
         },
-    })
+      },
+    },
+  });
 
-    return <ThemeContext.Provider value={{ toggleColorMode }}>
-        <ThemeProvider theme={theme}>
-            {children}
-        </ThemeProvider>
+  return (
+    <ThemeContext.Provider value={{ toggleColorMode }}>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ThemeContext.Provider>
-}
+  );
+};
