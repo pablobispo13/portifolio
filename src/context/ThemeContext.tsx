@@ -12,7 +12,7 @@ export const ThemeContext = createContext<ThemeContextInterface>({
 type ThemeType = "light" | "dark";
 
 interface ThemeContextProviderInterface {
-  children: ReactElement<any, any> | null;
+  children: ReactElement<ReactElement> | null;
 }
 
 export const ThemeContextProvider: React.FC<ThemeContextProviderInterface> = ({
@@ -53,11 +53,11 @@ export const ThemeContextProvider: React.FC<ThemeContextProviderInterface> = ({
             "#contact": {
               backgroundColor: mode === "dark" ? "#181d2b" : "#6ea4c5",
             },
-            ".MuiAppBar-root": {
-              backgroundColor: mode === "dark" ? "#050c1c" : "#265b7b",
-            },
             "&::-webkit-scrollbar": {
               width: "12px",
+            },
+            ".MuiMenuItem-root": {
+              borderRadius:"20px"
             },
             "&::-webkit-scrollbar-track": {
               background: "transparent",

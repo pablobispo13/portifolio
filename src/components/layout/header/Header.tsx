@@ -8,18 +8,17 @@ import "./css/main.css";
 
 //Service
 import { useTheme } from "@mui/material";
-import MouseScroller from "../mouseScroller/MouseScroller";
 
 export const Header = () => {
   useEffect(() => {
     cacheImages(["header-background.jpg", "header-background-light.jpg"]);
     setSlideContent(true);
-  });
+  }, []);
 
   const [slideContet, setSlideContent] = useState(false);
 
-  const cacheImages = async (params: any) => {
-    const promises = await params.map((src: any) => {
+  const cacheImages = async (params: string[]) => {
+    const promises = await params.map((src: string) => {
       return new Promise(function (resolve, reject) {
         const img = new Image();
         img.src = src;
@@ -35,14 +34,6 @@ export const Header = () => {
   };
 
   const theme = useTheme();
-
-  const scrollTo = (elementId = "") => {
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <Stack
       sx={{
@@ -65,11 +56,6 @@ export const Header = () => {
                 Pablo Bispo
               </Typography>
               <Typography variant="h3">FullStack Developer</Typography>
-              <MouseScroller
-                onClickAction={() => {
-                  scrollTo("projects");
-                }}
-              />
             </Stack>
           </Grow>
         </Stack>

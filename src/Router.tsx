@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Portifolio from "./components/Portifolio";
+import Portifolio from "./components/pages/Portifolio";
 
 export const Router = () => {
   return (

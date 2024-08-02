@@ -1,7 +1,7 @@
 import React from "react";
 
 //Components
-import { ButtonTheme } from "./ButtonTheme";
+import { ButtonTheme } from "../inputs/ButtonTheme";
 
 //
 import {
@@ -38,7 +38,10 @@ export const NavBar = () => {
   };
 
   return (
-    <AppBar position="fixed" sx={{ zIndex: "4" }}>
+    <AppBar
+      position="fixed"
+      sx={{ zIndex: "4", background: "transparent", boxShadow: "none" }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -72,6 +75,7 @@ export const NavBar = () => {
             >
               <MenuItem
                 key="Inicio_Menu"
+                sx={{borderRadius:"100px"}}
                 onClick={() => {
                   handleCloseNavMenu();
                   scrollTo("home");
