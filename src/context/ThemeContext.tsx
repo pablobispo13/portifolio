@@ -50,14 +50,11 @@ export const ThemeContextProvider: React.FC<ThemeContextProviderInterface> = ({
             ".MuiTypography-root": {
               fontFamily: "'Rubik', sans-serif !important",
             },
-            "#contact": {
-              backgroundColor: mode === "dark" ? "#181d2b" : "#6ea4c5",
-            },
             "&::-webkit-scrollbar": {
               width: "12px",
             },
             ".MuiMenuItem-root": {
-              borderRadius:"20px"
+              borderRadius: "20px",
             },
             "&::-webkit-scrollbar-track": {
               background: "transparent",

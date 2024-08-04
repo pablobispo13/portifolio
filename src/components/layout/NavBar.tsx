@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 //Components
 import { ButtonTheme } from "../inputs/ButtonTheme";
@@ -18,7 +18,14 @@ import {
 //Icons
 import MenuIcon from "@mui/icons-material/Menu";
 
+// Context
+import { MenuContext } from "../../context/MenuContext";
+
 export const NavBar = () => {
+  // Initiate libraries
+  const menuContext = useContext(MenuContext);
+
+  // UseStates & function
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -28,13 +35,6 @@ export const NavBar = () => {
 
   const handleCloseNavMenu = (anchor = null) => {
     setAnchorElNav(anchor);
-  };
-
-  const scrollTo = (elementId = "") => {
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
   };
 
   return (
@@ -75,10 +75,10 @@ export const NavBar = () => {
             >
               <MenuItem
                 key="Inicio_Menu"
-                sx={{borderRadius:"100px"}}
+                sx={{ borderRadius: "100px" }}
                 onClick={() => {
                   handleCloseNavMenu();
-                  scrollTo("home");
+                  menuContext?.setValue("home");
                 }}
               >
                 <Typography textAlign="center">Inicio</Typography>
@@ -86,7 +86,7 @@ export const NavBar = () => {
               <MenuItem
                 key="Projetos_Menu"
                 onClick={() => {
-                  scrollTo("projects");
+                  menuContext?.setValue("projects");
                   handleCloseNavMenu();
                 }}
               >
@@ -95,7 +95,7 @@ export const NavBar = () => {
               <MenuItem
                 key="Contato_Menu"
                 onClick={() => {
-                  scrollTo("contact");
+                  menuContext?.setValue("contact");
                   handleCloseNavMenu();
                 }}
               >
@@ -114,7 +114,7 @@ export const NavBar = () => {
               key="Inicio"
               onClick={() => {
                 handleCloseNavMenu();
-                scrollTo("home");
+                menuContext?.setValue("home");
               }}
             >
               <Typography textAlign="center">Inicio</Typography>
@@ -122,7 +122,7 @@ export const NavBar = () => {
             <MenuItem
               key="Projetos"
               onClick={() => {
-                scrollTo("projects");
+                menuContext?.setValue("projects");
                 handleCloseNavMenu();
               }}
             >
@@ -131,7 +131,7 @@ export const NavBar = () => {
             <MenuItem
               key="Contato"
               onClick={() => {
-                scrollTo("contact");
+                menuContext?.setValue("contact");
                 handleCloseNavMenu();
               }}
             >

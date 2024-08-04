@@ -1,4 +1,4 @@
-import { Header } from "../layout/header/Header";
+import { Content } from "../layout/content/Content";
 import { NavBar } from "../layout/NavBar";
 
 const Portifolio = () => (
@@ -6,10 +6,7 @@ const Portifolio = () => (
     {/* Navbar */}
     <NavBar />
     {/* Body */}
-    <Header />
-    {/* <Projects />
-    <Contact />
-    <Outlet /> */}
+    <Content />
   </>
 );
 
