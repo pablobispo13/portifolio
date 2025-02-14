@@ -14,13 +14,13 @@ export const Projects = () => {
   return (
     <Fade
       in={slideContet}
-      style={{ transformOrigin: "0 0 0" }}
+      style={{ transformOrigin: "0 0 0", marginTop: "81.19px" }}
       {...(slideContet ? { timeout: 1000 } : {})}
     >
       <Stack key={"projects"} id="projects">
         <Stack margin={2} gap={2}>
           <Stack display={"flex"} alignItems={"center"}>
-            <Typography variant="h1" className="responsive-headline">
+            <Typography variant="h2" className="responsive-headline">
               Projetos
             </Typography>
           </Stack>
@@ -36,8 +36,13 @@ export const Projects = () => {
                 <CardProjects
                   title={project.title}
                   content={project.content}
-                  url={project.url}
+                  img={project.img}
                   alt={project.alt}
+                  tags={project.tags}
+                  expandImage={project.expandImage}
+                  linkApi={project.linkApi}
+                  linkApp={project.linkApp}
+                  notionLink={project.notionLink}
                 />
               ))}
             </Stack>

@@ -40,7 +40,7 @@ export const NavBar = () => {
   return (
     <AppBar
       position="fixed"
-      sx={{ zIndex: "4", background: "transparent", boxShadow: "none" }}
+      sx={{ zIndex: "4", background: "rgb(63 159 201 / 17%)", boxShadow: "none" }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -92,15 +92,6 @@ export const NavBar = () => {
               >
                 <Typography textAlign="center">Projetos</Typography>
               </MenuItem>
-              <MenuItem
-                key="Contato_Menu"
-                onClick={() => {
-                  menuContext?.setValue("contact");
-                  handleCloseNavMenu();
-                }}
-              >
-                <Typography textAlign="center">Contato</Typography>
-              </MenuItem>
             </Menu>
           </Box>
           <Box
@@ -127,15 +118,6 @@ export const NavBar = () => {
               }}
             >
               <Typography textAlign="center">Projetos</Typography>
-            </MenuItem>
-            <MenuItem
-              key="Contato"
-              onClick={() => {
-                menuContext?.setValue("contact");
-                handleCloseNavMenu();
-              }}
-            >
-              <Typography textAlign="center">Contato</Typography>
             </MenuItem>
           </Box>
           <Box sx={{ flexGrow: 0 }}>

@@ -6,7 +6,7 @@ interface ThemeContextInterface {
 }
 
 export const ThemeContext = createContext<ThemeContextInterface>({
-  toggleColorMode: () => {},
+  toggleColorMode: () => { },
 });
 
 type ThemeType = "light" | "dark";
@@ -24,8 +24,8 @@ export const ThemeContextProvider: React.FC<ThemeContextProviderInterface> = ({
     return theme === "light" || theme === "dark"
       ? theme
       : prefersDarkMode
-      ? "dark"
-      : "light";
+        ? "dark"
+        : "light";
   };
 
   const [mode, setMode] = useState<ThemeType>(getTheme());
@@ -50,19 +50,23 @@ export const ThemeContextProvider: React.FC<ThemeContextProviderInterface> = ({
             ".MuiTypography-root": {
               fontFamily: "'Rubik', sans-serif !important",
             },
-            "&::-webkit-scrollbar": {
-              width: "12px",
+            ".MuiAppBar-root": {
+              background: mode === "dark" ? "rgb(76 93 119 / 25%)" : "rgb(63 159 201 / 25%)"
             },
             ".MuiMenuItem-root": {
               borderRadius: "20px",
             },
-            "&::-webkit-scrollbar-track": {
+            "*::-webkit-scrollbar-track": {
               background: "transparent",
             },
-            "&::-webkit-scrollbar-thumb": {
+            "*::-webkit-scrollbar-thumb": {
               backgroundColor: scrollbarColor,
               borderRadius: "12px",
             },
+            "*::-webkit-scrollbar": {
+              width: "12px",
+            },
+
           },
         },
       },

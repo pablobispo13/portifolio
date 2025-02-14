@@ -13,7 +13,6 @@ import { useTheme } from "@mui/material";
 import { MenuContext } from "../../../context/MenuContext";
 
 // Pages
-import { Contact } from "../../pages/Contact";
 import { Projects } from "../../pages/Projects";
 import { Apresentation } from "../../pages/Apresentation";
 
@@ -56,9 +55,6 @@ export const Content = () => {
         <Stack className="banner-text">
           {/* Home area */}
           {menuContext?.value == "home" && <Apresentation />}
-
-          {/* Contact area */}
-          {menuContext?.value == "contact" && <Contact />}
 
           {/* Projects area */}
           {menuContext?.value == "projects" && <Projects />}

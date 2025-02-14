@@ -6,7 +6,7 @@ import React, {
   SetStateAction,
 } from "react";
 
-type MenuType = "home" | "contact" | "projects";
+type MenuType = "home" | "projects";
 
 interface MenuContextType {
   value: MenuType;
